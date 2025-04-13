@@ -1,12 +1,12 @@
 name: "Voltronic"
 description: "Monitor and control Voltronic based inverters from Home Assistant."
-version: "1.0.0"
+version: "1.0.1"
 slug: "voltronic"
 init: false
 udev: true
 devices:
   - /dev/ttyS0
-  - /dev/ttyUSB0
+  - /dev/ttyUSB1
   - /dev/hidraw0
 arch:
   - aarch64
