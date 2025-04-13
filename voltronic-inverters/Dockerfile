@@ -1,6 +1,6 @@
-ARG BUILD_FROM
-FROM ${BUILD_FROM}
-
+# ARG BUILD_FROM
+# FROM ${BUILD_FROM}
+FROM ghcr.io/hassio-addons/debian-base/amd64:stable
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     nano \
@@ -12,15 +12,12 @@ RUN apt-get update && apt-get install -y \
 # Set the working directory
 WORKDIR /opt
 
-RUN pip install mppsolar
+RUN pip install mppsolar --break-system-packages
 
 # Create the destination directory and copy necessary file
 
 COPY run.sh /run.sh
 RUN chmod a+x /run.sh
-
-# Build the inverter CLI
-RUN cd /opt/voltronic
 
 # Configure healthcheck
 HEALTHCHECK \
