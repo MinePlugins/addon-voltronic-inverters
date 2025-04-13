@@ -39,7 +39,10 @@ sed -i "s|^device=.*|device=${DEVICE_PATH}|" "$INVERTER_CONFIG" || {
     bashio::log.error "Error updating $INVERTER_CONFIG"
     exit 1
 }
-
+echo "qpiri=104" >> $INVERTER_CONFIG
+echo "qpiws=67" >> $INVERTER_CONFIG
+echo "qmod=5" >> $INVERTER_CONFIG
+echo "qpigs=110" >> $INVERTER_CONFIG
 # Update the mqtt.json file
 BROKER_HOST=$(bashio::config 'mqtt_broker_host')
 USERNAME=$(bashio::config 'mqtt_username')
