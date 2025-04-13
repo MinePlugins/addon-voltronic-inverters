@@ -5,6 +5,8 @@ FROM ${BUILD_FROM}
 RUN apt-get update && apt-get install -y \
     nano \
     jq \
+    python3 \
+    python3-pip \
     mosquitto-clients
 
 # Set the working directory
