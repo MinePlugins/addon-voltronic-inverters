@@ -1,6 +1,6 @@
-# ARG BUILD_FROM
-# FROM ${BUILD_FROM}
-FROM ghcr.io/hassio-addons/debian-base/amd64:stable
+ARG BUILD_FROM
+FROM ${BUILD_FROM}
+# FROM ghcr.io/hassio-addons/debian-base/amd64:stable
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     nano \
