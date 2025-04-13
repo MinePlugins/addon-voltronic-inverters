@@ -30,10 +30,10 @@ PASSWORD=$(bashio::config 'mqtt_password')
 
 # Debug: Print updated file contents
 echo "[DEBUG] Updated content of inverter.conf:"
-cat "$INVERTER_CONFIG"
+# cat "$INVERTER_CONFIG"
 
 echo "[DEBUG] Updated content of mqtt.json:"
-cat "$MQTT_CONFIG"
+# cat "$MQTT_CONFIG"
 
 bashio::log.info "Configuration completed successfully."
 
