@@ -5,17 +5,6 @@ set -e
 INVERTER_CONFIG="/etc/inverter/inverter.conf"
 MQTT_CONFIG="/etc/inverter/mqtt.json"
 
-# Check if files exist
-if [ ! -f "$INVERTER_CONFIG" ]; then
-    bashio::log.error "The inverter configuration file ($INVERTER_CONFIG) is missing!"
-    exit 1
-fi
-
-if [ ! -f "$MQTT_CONFIG" ]; then
-    bashio::log.error "The MQTT configuration file ($MQTT_CONFIG) is missing!"
-    exit 1
-fi
-
 # Update the inverter.conf file
 DEVICE=$(bashio::config 'device_type')
 case "${DEVICE}" in
@@ -47,3 +36,5 @@ echo "[DEBUG] Updated content of mqtt.json:"
 cat "$MQTT_CONFIG"
 
 bashio::log.info "Configuration completed successfully."
+
+/bin/bash
