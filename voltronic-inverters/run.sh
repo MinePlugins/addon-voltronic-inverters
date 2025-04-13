@@ -66,8 +66,8 @@ bashio::log.info "Starting infinite loop to keep container running..."
 while true; do
     sleep 30
     # Check if mppsolar process is still running
-    if ! pgrep -f mppsolar >/dev/null; then
-        bashio::log.warning "mppsolar process died, restarting..."
-        mppsolar -C "$INVERTER_CONFIG" -q "$MQTT_CONFIG" --daemon
-    fi
+    # if ! pgrep -f mppsolar >/dev/null; then
+    #     bashio::log.warning "mppsolar process died, restarting..."
+    #     mppsolar -C "$INVERTER_CONFIG" -q "$MQTT_CONFIG" --daemon
+    # fi
 done
