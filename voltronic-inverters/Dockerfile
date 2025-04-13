@@ -3,12 +3,9 @@ FROM ${BUILD_FROM}
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    build-essential \
-    cmake \
     nano \
     jq \
-    mosquitto-clients 
+    mosquitto-clients
 
 # Set the working directory
 WORKDIR /opt
