@@ -37,4 +37,37 @@ echo "[DEBUG] Updated content of mqtt.json:"
 
 bashio::log.info "Configuration completed successfully."
 
-/bin/bash
+# # Start the mppsolar process to communicate with the inverter
+# bashio::log.info "Starting mppsolar process..."
+
+# # Create necessary configuration files
+# cat >"$INVERTER_CONFIG" <<EOF
+# {
+#     "device": "${DEVICE_PATH}",
+#     "protocol": "${DEVICE}"
+# }
+# EOF
+
+# cat >"$MQTT_CONFIG" <<EOF
+# {
+#     "host": "${BROKER_HOST}",
+#     "username": "${USERNAME}",
+#     "password": "${PASSWORD}",
+#     "topic": "homeassistant/sensor/voltronic"
+# }
+# EOF
+
+# # Start mppsolar daemon in the background
+# bashio::log.info "Starting mppsolar daemon..."
+# mppsolar -C "$INVERTER_CONFIG" -q "$MQTT_CONFIG" --daemon
+
+# Keep the container running indefinitely
+bashio::log.info "Starting infinite loop to keep container running..."
+while true; do
+    sleep 30
+    # Check if mppsolar process is still running
+    if ! pgrep -f mppsolar >/dev/null; then
+        bashio::log.warning "mppsolar process died, restarting..."
+        mppsolar -C "$INVERTER_CONFIG" -q "$MQTT_CONFIG" --daemon
+    fi
+done
